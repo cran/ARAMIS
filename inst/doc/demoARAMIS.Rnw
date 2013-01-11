@@ -410,9 +410,9 @@ trgt <- targetBanana(b=0.1)
 mxtr <- mclustMix()
 system.time(amis <- AMIS(N=1000,niter=10,p=2,target=trgt,mixture=mxtr))	
 invisible(gc())
-system.time(amisMC <- AMIS(N=1000,niter=10,p=2,target=trgt,mixture=mxtr,parallel="multicore"))	
+system.time(amisMC <- AMIS(N=1000,niter=10,p=2,target=trgt,mixture=mxtr,parallel="multicore",nCores=2))	
 invisible(gc())
-system.time(amisSN <- AMIS(N=1000,niter=10,p=2,target=trgt,mixture=mxtr,parallel="snow"))
+system.time(amisSN <- AMIS(N=1000,niter=10,p=2,target=trgt,mixture=mxtr,parallel="snow",nCores=2))
 
 
 summary(amis)

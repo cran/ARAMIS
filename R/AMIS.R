@@ -17,7 +17,10 @@ AMIS <- function(N,niter,p,target,proposal=mvtComp(df=3),initialize=uniInit(),mi
     if (parallel != "no" && nCores!=1) {
     	require("parallel")
     	
-    	if(nCores<1)nCores <- detectCores()
+    	if(nCores<1){
+    		nCores <- detectCores()
+    		
+    		}
     	
         if (parallel == "multicore"){
         	have_mc <- .Platform$OS.type != "windows"
@@ -168,7 +171,7 @@ AMIS <- function(N,niter,p,target,proposal=mvtComp(df=3),initialize=uniInit(),mi
 					}else if (have_snow) {
 						
 						if (is.null(cl)) {
-							cl <- parallel::makePSOCKcluster(rep("localhost", nCores))
+							cl <- parallel::makePSOCKcluster(rep("localhost", nCores))#PSOCK
 							#cl <- parallel::makePSOCKcluster(getOption("cl.cores", nCores))
 							#cl <- makeCluster(getOption("cl.cores", nCores))
 							if (RNGkind()[1L] == "L'Ecuyer-CMRG") parallel::clusterSetRNGStream(cl)
